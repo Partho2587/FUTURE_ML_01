@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sales Forecast System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>📊 Sales & Profit Forecast System</h1>
+
+    <form method="POST">
+        <label>Select Future Date:</label>
+        <input type="date" name="date" required>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if sales %}
+        <div class="result">
+            <h2>Forecast Results</h2>
+            <p><strong>Predicted Sales:</strong> ₹ {{ sales }}</p>
+            <p><strong>Predicted Profit:</strong> ₹ {{ profit }}</p>
+            <p><strong>Status:</strong> {{ status }}</p>
+            <p><strong>Sales Confidence:</strong> {{ conf_s }} %</p>
+            <p><strong>Profit Confidence:</strong> {{ conf_p }} %</p>
+        </div>
+
+        <div class="metrics">
+            <h3>Model Performance</h3>
+            <p>MAE: {{ mae }}</p>
+            <p>RMSE: {{ rmse }}</p>
+            <p>R² Score: {{ r2 }}</p>
+        </div>
+
+        {% if graph %}
+            <img src="{{ url_for('static', filename='forecast.png') }}">
+        {% endif %}
+    {% endif %}
+
+</div>
+
+</body>
+</html>
