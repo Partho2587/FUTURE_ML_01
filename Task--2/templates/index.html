@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Support Ticket Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🚀 Smart Support Ticket Classifier</h1>
+
+    <form method="POST">
+        <label>Ticket Subject</label>
+        <input type="text" name="subject" required>
+
+        <label>Ticket Description</label>
+        <textarea name="description" required></textarea>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if category %}
+    <div class="result">
+        <h2>Prediction Result</h2>
+        <p><strong>Category:</strong> {{ category }}</p>
+        <p><strong>Priority:</strong> {{ priority }}</p>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
