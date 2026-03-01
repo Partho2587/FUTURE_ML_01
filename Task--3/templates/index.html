@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Resume Screening</title>
+</head>
+<body>
+
+<h2>Upload Resume</h2>
+
+<form action="/predict" method="post" enctype="multipart/form-data">
+    <input type="file" name="resume" required>
+    <br><br>
+    <button type="submit">Evaluate Resume</button>
+</form>
+
+{% if result %}
+<h3>Result: {{ result }}</h3>
+<h3>Score: {{ score }}</h3>
+<p>{{ explanation }}</p>
+
+<h4>Matched Skills:</h4>
+<p>{{ matched }}</p>
+
+<h4>Missing Skills:</h4>
+<p>{{ missing }}</p>
+{% endif %}
+
+</body>
+</html>
