@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hinglish Sentiment Analyzer</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>🇮🇳 Hinglish Sentiment & Age Predictor</h1>
+
+    <form method="POST">
+        <textarea name="text" placeholder="Type Hinglish / English text here..." required>{{ user_text }}</textarea>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if sentiment %}
+    <div class="result">
+        <p>
+            <b>Sentiment:</b> {{ sentiment }}
+            <span class="confidence">({{ sentiment_conf }}%)</span>
+        </p>
+
+        <p>
+            <b>Predicted Age Group:</b> {{ age_group }}
+            <span class="confidence">({{ age_conf }}%)</span>
+        </p>
+
+        {% if explanation %}
+        <div class="explain-box">
+            <p><b>Why this prediction?</b></p>
+            <ul>
+                {% for word in explanation %}
+                    <li>{{ word }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
